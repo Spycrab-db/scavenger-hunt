@@ -17,6 +17,7 @@ mongoose
     console.log(err);
   });
 
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
