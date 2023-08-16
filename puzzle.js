@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const puzzleSchema = new mongoose.Schema({
-  number: Number,
+  number: String,
   title: String,
   question: String,
   code: String,

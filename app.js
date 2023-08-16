@@ -21,7 +21,10 @@ app.get("/", (req, res) => {
 app.get("/:id", async (req, res) => {
   const puzzle = await Puzzle.findById(req.params.id);
   if (puzzle) {
-    return res.render("1", { title: puzzle.title });
+    return res.render(puzzle.number, {
+      title: puzzle.title,
+      question: puzzle.question,
+    });
   }
   return res.status(404).send("Not Found");
 });
