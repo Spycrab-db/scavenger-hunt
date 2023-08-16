@@ -12,6 +12,8 @@ mongoose.connect(dbURL).then(() => {
   console.log("CONNECTED TO DATABASE");
 });
 
+app.use(express.urlencoded());
+
 app.get("/", (req, res) => {
   res.render("home");
 });
@@ -19,9 +21,18 @@ app.get("/", (req, res) => {
 app.get("/:id", async (req, res) => {
   const puzzle = await Puzzle.findById(req.params.id);
   if (puzzle) {
-    return res.send(puzzle.title);
+    return res.render("1", { title: puzzle.title });
   }
   return res.status(404).send("Not Found");
+});
+
+app.post("/:id", async (req, res) => {
+  const puzzle = await Puzzle.findById(req.params.id);
+  if (puzzle && puzzle.answer.includes(req.body.answer.toLowerCase())) {
+    res.send(puzzle.reward);
+  } else {
+    res.redirect(`/${req.params.id}`);
+  }
 });
 
 app.listen(port, () => {
