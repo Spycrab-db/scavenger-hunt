@@ -12,7 +12,7 @@ mongoose.connect(dbURL).then(() => {
   console.log("CONNECTED TO DATABASE");
 });
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -28,11 +28,13 @@ app.get("/:id", async (req, res) => {
 
 app.post("/:id", async (req, res) => {
   const puzzle = await Puzzle.findById(req.params.id);
-  if (puzzle && puzzle.answer.includes(req.body.answer.toLowerCase())) {
-    res.send(puzzle.reward);
-  } else {
-    res.redirect(`/${req.params.id}`);
+  if (puzzle) {
+    if (!Array.isArray(puzzle.answer)) puzzle.answer = [puzzle.answer];
+    if (puzzle.answer.includes(req.body.answer.toLowerCase())) {
+      return res.send(puzzle.reward);
+    }
   }
+  return res.redirect(`/${req.params.id}`);
 });
 
 app.listen(port, () => {
