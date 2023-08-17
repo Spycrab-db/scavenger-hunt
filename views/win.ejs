@@ -11,9 +11,13 @@
       You have solved the final puzzle! To verify your victory, enter your team
       ID
     </p>
-    <form method="POST">
-      <label for="id">Enter Team ID</label>
-      <input type="text" name="id" id="id" required />
+    <form action="/win" method="POST">
+      <div>
+        <label for="id">Team ID</label>
+        <input type="text" name="id" id="id" required />
+        <input type="hidden" name="questionID" value="<%= questionID %>" />
+        <input type="hidden" name="answer" value="<%= answer %>" />
+      </div>
       <button>Submit</button>
     </form>
   </body>
