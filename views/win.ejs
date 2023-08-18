@@ -19,6 +19,7 @@
           name="name"
           id="name"
           placeholder="Provide a team name"
+          value="<%= teamNameInput %>"
           required
         />
       </div>
@@ -29,11 +30,16 @@
           name="id"
           id="id"
           placeholder="Enter the ID we provided for you"
+          value="<%= teamIDInput %>"
           required
         />
       </div>
       <input type="hidden" name="questionID" value="<%= questionID %>" />
       <input type="hidden" name="answer" value="<%= answer %>" />
+      <p>
+        <%= invalidID && "Team ID is invalid or already registered as a winner"
+        %>
+      </p>
       <button>Submit</button>
       <div>
         <p>Note: You can only register your victory once</p>

@@ -43,6 +43,8 @@ app.get("/:id", async (req, res) => {
       title: puzzle.title,
       question: puzzle.question,
       code: puzzle.code,
+      input: req.query.input || null,
+      incorrect: req.query.incorrect || null,
     });
   } catch (e) {
     return res.status(404).send("Not Found");
@@ -62,6 +64,8 @@ app.post("/win", async (req, res) => {
       return res.render("win", {
         questionID: req.body.questionID,
         answer: req.body.answer,
+        teamNameInput: req.body.name,
+        teamIDInput: req.body.id,
         invalidID: true,
       });
     }
@@ -88,7 +92,9 @@ app.post("/:id", async (req, res) => {
         if (JSON.stringify(answer) === JSON.stringify(puzzle.answer)) {
           return res.render("reward", { reward: puzzle.reward });
         }
-        return res.redirect(`/${req.params.id}`);
+        return res.redirect(
+          `/${req.params.id}?incorrect=true&input=${req.body.answer}`
+        );
       }
 
       // Check answer against an array of correct answers
@@ -97,6 +103,9 @@ app.post("/:id", async (req, res) => {
           return res.render("win", {
             questionID: puzzle.id,
             answer: req.body.answer,
+            teamNameInput: null,
+            teamIDInput: null,
+            invalidID: null,
           });
         }
         return res.render("reward", { reward: puzzle.reward });
