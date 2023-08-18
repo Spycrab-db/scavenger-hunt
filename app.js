@@ -34,6 +34,8 @@ app.get("/:id", async (req, res) => {
         id: puzzle.id,
         title: puzzle.title,
         question: puzzle.question,
+        input: req.query.input || null,
+        incorrect: req.query.incorrect || null,
       });
     }
     return res.render("cipher", {
@@ -99,7 +101,9 @@ app.post("/:id", async (req, res) => {
         }
         return res.render("reward", { reward: puzzle.reward });
       }
-      return res.redirect(`/${req.params.id}`);
+      return res.redirect(
+        `/${req.params.id}?incorrect=true&input=${req.body.answer}`
+      );
     }
     return res.redirect(`/${req.params.id}`);
   } catch (e) {
