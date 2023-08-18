@@ -8,17 +8,36 @@
   <body>
     <h1>Congratulations!</h1>
     <p>
-      You have solved the final puzzle! To verify your victory, enter your team
-      ID
+      You have solved the final puzzle! Create a name for your team and enter
+      your team ID to verify your victory
     </p>
     <form action="/win" method="POST">
       <div>
-        <label for="id">Team ID</label>
-        <input type="text" name="id" id="id" required />
-        <input type="hidden" name="questionID" value="<%= questionID %>" />
-        <input type="hidden" name="answer" value="<%= answer %>" />
+        <label for="name">Team</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Provide a team name"
+          required
+        />
       </div>
+      <div>
+        <label for="id">Team ID</label>
+        <input
+          type="text"
+          name="id"
+          id="id"
+          placeholder="Enter the ID we provided for you"
+          required
+        />
+      </div>
+      <input type="hidden" name="questionID" value="<%= questionID %>" />
+      <input type="hidden" name="answer" value="<%= answer %>" />
       <button>Submit</button>
+      <div>
+        <p>Note: You can only register your victory once</p>
+      </div>
     </form>
   </body>
 </html>

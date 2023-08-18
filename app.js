@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Puzzle = require("./models/puzzle");
+const Team = require("./models/team");
 const Winner = require("./models/winner");
 
 const app = express();
@@ -50,13 +51,23 @@ app.get("/:id", async (req, res) => {
 app.post("/win", async (req, res) => {
   try {
     const puzzle = await Puzzle.findById(req.body.questionID);
-    if (puzzle.answer.includes(req.body.answer)) {
-      const winner = new Winner({ id: req.body.id });
-      winner.save();
-      res.render("success");
+    const teamExists = await Team.exists({ _id: req.body.id });
+    const winnerExists = await Winner.exists({ teamID: req.body.id });
+    if (!puzzle || !puzzle.answer.includes(req.body.answer)) {
+      return res.status(401).send("UNAUTHORIZED REQUEST");
     }
+    if (!teamExists || winnerExists) {
+      return res.render("win", {
+        questionID: req.body.questionID,
+        answer: req.body.answer,
+        invalidID: true,
+      });
+    }
+    const winner = new Winner({ teamID: req.body.id, name: req.body.name });
+    winner.save();
+    return res.render("success");
   } catch {
-    res.status(401).send("UNAUTHORIZED REQUEST");
+    return res.send("ERROR");
   }
 });
 

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const winnerSchema = new mongoose.Schema({
-  id: String,
+  teamID: String,
   name: String,
   time: {
     type: Date,
