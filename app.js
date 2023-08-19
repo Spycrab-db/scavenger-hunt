@@ -77,46 +77,53 @@ app.post("/win", async (req, res) => {
   }
 });
 
-// Route for submitting and checking answer
-app.post("/:id", async (req, res) => {
+// Route to check string-answer against an array of right answers
+app.post("/:id/check-string", async (req, res) => {
   try {
     const puzzle = await Puzzle.findById(req.params.id);
-    if (puzzle) {
-      // Check answer as an array
-      if (req.body.checkList) {
-        const answer = [];
-        const keys = Object.keys(req.body);
-        keys.forEach((key) => {
-          if (key !== "checkList") answer.push(req.body[key]);
+    if (!puzzle) return res.send("NOT FOUND");
+    // Check answer against an array of correct answers
+    if (puzzle.answer.includes(req.body.answer.toLowerCase())) {
+      if (puzzle.number === "8") {
+        return res.render("win", {
+          questionID: puzzle.id,
+          answer: req.body.answer,
+          teamNameInput: null,
+          teamIDInput: null,
+          invalidID: null,
         });
-        if (JSON.stringify(answer) === JSON.stringify(puzzle.answer)) {
-          return res.render("reward", { reward: puzzle.reward });
-        }
-        return res.redirect(
-          `/${req.params.id}?incorrect=true&input=${req.body.answer}`
-        );
       }
+      return res.render("reward", { reward: puzzle.reward });
+    }
+    return res.redirect(
+      `/${req.params.id}?incorrect=true&input=${req.body.answer}`
+    );
+  } catch (e) {
+    return res.status(500).send("SERVER ERROR");
+  }
+});
 
-      // Check answer against an array of correct answers
-      if (puzzle.answer.includes(req.body.answer.toLowerCase())) {
-        if (puzzle.number === "8") {
-          return res.render("win", {
-            questionID: puzzle.id,
-            answer: req.body.answer,
-            teamNameInput: null,
-            teamIDInput: null,
-            invalidID: null,
-          });
-        }
-        return res.render("reward", { reward: puzzle.reward });
+// Route to check answer as an array
+app.post("/:id/check-array", async (req, res) => {
+  try {
+    const puzzle = await Puzzle.findById(req.params.id);
+    if (!puzzle) return res.send("NOT FOUND");
+    const incorrect = [];
+    for (let i = 0; i < puzzle.answer.length; i += 1) {
+      if (!(req.body[i] === puzzle.answer[i])) {
+        incorrect.push(i);
       }
+    }
+    if (incorrect.length) {
       return res.redirect(
-        `/${req.params.id}?incorrect=true&input=${req.body.answer}`
+        `/${req.params.id}?incorrect=${incorrect}&input=${Object.values(
+          req.body
+        )}`
       );
     }
-    return res.redirect(`/${req.params.id}`);
-  } catch (e) {
-    return res.status(500).send("INVALID POST REQUEST");
+    return res.render("reward", { reward: puzzle.reward });
+  } catch {
+    return res.status(500).send("SERVER ERROR");
   }
 });
 

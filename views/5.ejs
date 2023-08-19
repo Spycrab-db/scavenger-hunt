@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/global.css">
     <title>Scavenger Hunt</title>
   </head>
   <body>
@@ -12,20 +12,26 @@
       src="https://res.cloudinary.com/dnmrwlniy/image/upload/v1692212781/Scavenger%20Hunt/coding_question_yhn4il.png"
       alt="puzzle"
     />
-    <form method="POST">
+    <form action="/<%= id %>/check-array" method="POST">
+      <% input = input && input.split(",") %>
+      <% incorrect = incorrect && incorrect.split(",") %>
       <div>
-        <input type="hidden" name="checkList" value="true" />
-        <label for="1">1.</label>
-        <input type="text" name="0" id="1" required />
-        <label for="2">2.</label>
-        <input type="text" name="1" id="2" required />
-        <label for="3">3.</label>
-        <input type="text" name="2" id="3" required />
-        <label for="4">4.</label>
-        <input type="text" name="3" id="4" required />
-        <label for="5">5.</label>
-        <input type="text" name="4" id="5" required />
+        <% for( let index = 0; index < 5; index++ ) { %>
+        <label for="<%= index %>"><%= index + 1 %>.</label>
+        <input type="text" name="<%= index %>" id="<%= index %>" required
+        value="<%= input && input[index] %>"
+        <% if (incorrect && incorrect.includes(String(index))) { %>
+         class="incorrect-input"
+        <% } %>
+        />
+        <% } %>
       </div>
+      <% if (incorrect) { %>
+      <div>Incorrect</div>
+      <div>
+        <%= incorrect.map(num => (Number(num) + 1)).join(', ') %>
+      </div>
+      <% } %>
       <button>Submit</button>
     </form>
   </body>

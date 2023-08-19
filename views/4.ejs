@@ -11,32 +11,37 @@
       src="https://res.cloudinary.com/dnmrwlniy/image/upload/v1692152416/Scavenger%20Hunt/crossword-21SEp8IRYe_1_wo961e.png"
       alt="puzzle"
     />
-    <form method="POST">
+    <form action="/<%= id %>/check-array" method="POST">
+      <% input = input && input.split(",") %>
+      <% incorrect = incorrect && incorrect.split(",") %>
       <div>
-        <input type="hidden" name="checkList" value="true" />
-        <label for="1">1.</label>
-        <input type="text" name="0" id="1" required />
-        <label for="2">2.</label>
-        <input type="text" name="1" id="2" required />
-        <label for="3">3.</label>
-        <input type="text" name="2" id="3" required />
-        <label for="4">4.</label>
-        <input type="text" name="3" id="4" required />
-        <label for="5">5.</label>
-        <input type="text" name="4" id="5" required />
+        <% for( let index = 0; index < 5; index++ ) { %>
+        <label for="<%= index %>"><%= index + 1 %>.</label>
+        <input type="text" name="<%= index %>" id="<%= index %>" required
+        value="<%= input && input[index] %>"
+        <% if (incorrect && incorrect.includes(String(index))) { %>
+         class="incorrect-input"
+        <% } %>
+        />
+        <% } %>
       </div>
       <div>
-        <label for="6">6.</label>
-        <input type="text" name="5" id="6" required />
-        <label for="7">7.</label>
-        <input type="text" name="6" id="7" required />
-        <label for="8">8.</label>
-        <input type="text" name="7" id="8" required />
-        <label for="9">9.</label>
-        <input type="text" name="8" id="9" required />
-        <label for="10">10.</label>
-        <input type="text" name="9" id="10" required />
+        <% for( let index = 5; index < 10; index++ ) { %>
+        <label for="<%= index %>"><%= index+1 %>.</label>
+        <input type="text" name="<%= index %>" id="<%= index %>" required
+        value="<%= input && input[index] %>"
+        <% if (incorrect && incorrect.includes(String(index))) { %>
+          class="incorrect-input"
+        <% } %>
+        />
+        <% } %>
       </div>
+      <% if (incorrect) { %>
+      <div>Incorrect</div>
+      <div>
+        <%= incorrect.map(num => (Number(num) + 1)).join(', ') %>
+      </div>
+      <% } %>
       <button>Submit</button>
     </form>
   </body>
