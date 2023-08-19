@@ -23,6 +23,10 @@
           required
         />
       </div>
+      <p>
+        <%= nameTaken && "Team Name is taken"
+        %>
+      </p>
       <div>
         <label for="id">Team ID</label>
         <input
@@ -34,12 +38,12 @@
           required
         />
       </div>
-      <input type="hidden" name="questionID" value="<%= questionID %>" />
-      <input type="hidden" name="answer" value="<%= answer %>" />
       <p>
         <%= invalidID && "Team ID is invalid or already registered as a winner"
         %>
       </p>
+      <input type="hidden" name="questionID" value="<%= questionID %>" />
+      <input type="hidden" name="answer" value="<%= answer %>" />
       <button>Submit</button>
       <div>
         <p>Note: You can only register your victory once</p>

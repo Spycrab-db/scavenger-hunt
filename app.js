@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/admin", adminRouter);
 
 app.get("/", async (req, res) => {
-  const winners = await Winner.find({});
+  const winners = await Winner.find({}).sort({ createdAt: 1 });
   res.render("home", { winners });
 });
 
@@ -66,19 +66,25 @@ app.get("/:id", async (req, res) => {
 // Route for posting team ID
 app.post("/win", async (req, res) => {
   try {
-    const puzzle = await Puzzle.findById(req.body.questionID);
-    const teamExists = await Team.exists({ _id: req.body.id });
-    const winnerExists = await Winner.exists({ teamID: req.body.id });
-    if (!puzzle || !puzzle.answer.includes(req.body.answer)) {
+    const { questionID, id, answer, name } = req.body;
+    const puzzle = await Puzzle.findById(questionID);
+    const teamExists = await Team.exists({ _id: id });
+    const winnerExists = await Winner.exists({ teamID: id });
+    const nameTaken = (await Winner.find({}))
+      .map((winner) => winner.name)
+      .includes(name);
+
+    if (!puzzle || !puzzle.answer.includes(answer)) {
       return res.status(401).send("UNAUTHORIZED REQUEST");
     }
-    if (!teamExists || winnerExists) {
+    if (!teamExists || winnerExists || nameTaken) {
       return res.render("win", {
-        questionID: req.body.questionID,
-        answer: req.body.answer,
-        teamNameInput: req.body.name,
-        teamIDInput: req.body.id,
-        invalidID: true,
+        questionID,
+        answer,
+        teamNameInput: name,
+        teamIDInput: id,
+        invalidID: Boolean(winnerExists) || null,
+        nameTaken: nameTaken || null,
       });
     }
     const winner = new Winner({ teamID: req.body.id, name: req.body.name });
