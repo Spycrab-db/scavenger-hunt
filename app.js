@@ -83,7 +83,7 @@ app.post("/win", async (req, res) => {
         answer,
         teamNameInput: name,
         teamIDInput: id,
-        invalidID: Boolean(winnerExists) || null,
+        invalidID: !teamExists || winnerExists || null,
         nameTaken: nameTaken || null,
       });
     }
@@ -108,6 +108,7 @@ app.post("/:id/check-string", async (req, res) => {
           answer: req.body.answer,
           teamNameInput: null,
           teamIDInput: null,
+          nameTaken: null,
           invalidID: null,
         });
       }
