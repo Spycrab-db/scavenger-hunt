@@ -33,8 +33,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/admin", adminRouter);
 
-app.get("/", (req, res) => {
-  res.render("home");
+app.get("/", async (req, res) => {
+  const winners = await Winner.find({});
+  res.render("home", { winners });
 });
 
 app.get("/:id", async (req, res) => {
