@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
+const adminRouter = require("./admin");
 const Puzzle = require("./models/puzzle");
 const Team = require("./models/team");
 const Winner = require("./models/winner");
@@ -30,6 +31,8 @@ app.use(
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
+app.use("/admin", adminRouter);
+
 app.get("/", (req, res) => {
   res.render("home");
 });
@@ -37,8 +40,9 @@ app.get("/", (req, res) => {
 app.get("/:id", async (req, res) => {
   try {
     const puzzle = await Puzzle.findById(req.params.id);
-    if (Number(puzzle.number) <= 5) {
-      return res.render(puzzle.number, {
+    console.log(puzzle);
+    if (puzzle.number <= 5) {
+      return res.render(String(puzzle.number), {
         id: puzzle.id,
         title: puzzle.title,
         question: puzzle.question,
@@ -78,7 +82,7 @@ app.post("/win", async (req, res) => {
       });
     }
     const winner = new Winner({ teamID: req.body.id, name: req.body.name });
-    winner.save();
+    await winner.save();
     return res.render("success");
   } catch {
     return res.send("ERROR");
@@ -90,17 +94,20 @@ app.post("/:id/check-string", async (req, res) => {
   try {
     const puzzle = await Puzzle.findById(req.params.id);
     if (!puzzle) return res.send("NOT FOUND");
-    if (puzzle.answer.includes(req.body.answer.toLowerCase())) {
-      if (puzzle.number === "8") {
+    const { id, number, answer, reward } = puzzle;
+    if (answer.includes(req.body.answer.toLowerCase())) {
+      if (number === 8) {
         return res.render("win", {
-          questionID: puzzle.id,
+          questionID: id,
           answer: req.body.answer,
           teamNameInput: null,
           teamIDInput: null,
           invalidID: null,
         });
       }
-      return res.render("reward", { reward: puzzle.reward });
+      return res.render("reward", {
+        reward: reward[Math.floor(Math.random() * 3)],
+      });
     }
     return res.redirect(
       `/${req.params.id}?incorrect=true&input=${req.body.answer}`
@@ -115,9 +122,10 @@ app.post("/:id/check-array", async (req, res) => {
   try {
     const puzzle = await Puzzle.findById(req.params.id);
     if (!puzzle) return res.send("NOT FOUND");
+    const { answer, reward } = puzzle;
     const incorrect = [];
-    for (let i = 0; i < puzzle.answer.length; i += 1) {
-      if (!(req.body[i] === puzzle.answer[i])) {
+    for (let i = 0; i < answer.length; i += 1) {
+      if (!(req.body[i] === answer[i])) {
         incorrect.push(i);
       }
     }
@@ -128,7 +136,9 @@ app.post("/:id/check-array", async (req, res) => {
         )}`
       );
     }
-    return res.render("reward", { reward: puzzle.reward });
+    return res.render("reward", {
+      reward: reward[Math.floor(Math.random() * 3)],
+    });
   } catch {
     return res.status(500).send("SERVER ERROR");
   }
