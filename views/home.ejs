@@ -7,13 +7,13 @@
 </head>
 <body>
     <h1>Scavenger Hunt!</h1>
-    <h2>
-        Leaderboard
-    </h2>
+    <h2>Winners</h2>
     <ol>
         <% for( let winner of winners ) { %>
             <li><%= winner.name %></li>
-            <p><%= winner.id %></p>
+            <p>TeamID: <%= winner.id %></p>
+            <% const opt = { month: "long", day: "numeric", hour: "numeric", minute: "numeric"} %>
+            <p>Time: <%= winner.createdAt.toLocaleString("en-US", opt) %></p>
         <% } %>
     </ol>
 </body>
