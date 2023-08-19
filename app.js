@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const helmet = require("helmet");
 const Puzzle = require("./models/puzzle");
 const Team = require("./models/team");
 const Winner = require("./models/winner");
@@ -19,6 +20,13 @@ mongoose
     console.log(err);
   });
 
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: { "img-src": ["'self'", "res.cloudinary.com"] },
+    },
+  })
+);
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
@@ -77,12 +85,11 @@ app.post("/win", async (req, res) => {
   }
 });
 
-// Route to check string-answer against an array of right answers
+// Route to check string-answer against an array of correct answers
 app.post("/:id/check-string", async (req, res) => {
   try {
     const puzzle = await Puzzle.findById(req.params.id);
     if (!puzzle) return res.send("NOT FOUND");
-    // Check answer against an array of correct answers
     if (puzzle.answer.includes(req.body.answer.toLowerCase())) {
       if (puzzle.number === "8") {
         return res.render("win", {
