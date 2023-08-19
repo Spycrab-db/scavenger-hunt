@@ -40,7 +40,6 @@ app.get("/", (req, res) => {
 app.get("/:id", async (req, res) => {
   try {
     const puzzle = await Puzzle.findById(req.params.id);
-    console.log(puzzle);
     if (puzzle.number <= 5) {
       return res.render(String(puzzle.number), {
         id: puzzle.id,

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+  </head>
+  <body>
+    <h1>Admin Dashboard</h1>
+    <h2>Change location</h2>
+    <% for( let puzzle of puzzles) { %>
+        <form action="/admin/<%= puzzle.id %>" method="post">
+            <div>
+                <input type="text" name="0" value="<%= puzzle.reward[0] %>">
+                <input type="text" name="1" value="<%= puzzle.reward[1] %>">
+                <input type="text" name="2" value="<%= puzzle.reward[2] %>">
+                <input type="hidden" name="password" value="<%= password %>">
+            </div>
+            <button>Submit</button>
+        </form>
+    <% } %>
+  </body>
+</html>
