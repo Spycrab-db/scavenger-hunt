@@ -1,0 +1,8 @@
+<form action="/<%= id %>/check-string" method="post">
+    <div>
+      <label for="answer" style="display: block">Answer</label>
+      <input type="text" name="answer" value="<%= input || ""%>" required />
+    </div>
+    <p><%= incorrect && "Incorrect, please try again" %></p>
+    <button>Submit</button>
+</form>

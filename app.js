@@ -44,6 +44,7 @@ app.get("/:id", async (req, res) => {
     if (puzzle.number <= 5) {
       return res.render(String(puzzle.number), {
         id: puzzle.id,
+        number: puzzle.number,
         title: puzzle.title,
         question: puzzle.question,
         input: req.query.input || null,
@@ -52,6 +53,7 @@ app.get("/:id", async (req, res) => {
     }
     return res.render("cipher", {
       id: puzzle.id,
+      number: puzzle.number,
       title: puzzle.title,
       question: puzzle.question,
       code: puzzle.code,
