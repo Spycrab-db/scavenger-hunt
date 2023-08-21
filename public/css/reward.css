@@ -1,0 +1,15 @@
+#correct{
+    color: #90C78E;
+    font-size: 5rem;
+}
+#hint{
+    margin: 10rem 0;
+    text-align: center;
+    font-size: 2rem;
+    width: 40%;
+}
+@media (max-width: 760px){
+    #hint{
+        width: unset;
+    }
+}
