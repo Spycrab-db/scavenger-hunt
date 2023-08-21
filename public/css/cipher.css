@@ -1,0 +1,31 @@
+form{
+    width: 50%;
+}
+button{
+    width: 10rem;
+}
+#question{
+    text-align: center;
+    font-size: 1.5rem;
+}
+#code{
+    text-align: center;
+    margin: 4rem 0;
+}
+@media (max-width: 760px){
+    #question{
+        width: 90%;
+        font-size: 1rem;
+    }
+    #code{
+        width: 90%;
+        font-size: 1rem;
+        overflow-wrap: anywhere;
+    }
+    form{
+        width: 90%;
+    }
+    #answer{
+        font-size: 1rem;
+    }
+}

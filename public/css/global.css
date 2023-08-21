@@ -40,6 +40,7 @@ button{
     padding: .6rem;
     width: 50%;
     margin: auto;
+    margin-bottom: .5rem;
 }
 #answer-form{
     width: 30%;
@@ -56,15 +57,15 @@ button{
     height: 10rem;
 }
 .correct-input{
-    border: solid 1px #629E5D;
+    border: solid 1px #629E5D !important;
 }
 .incorrect-input{
-    border: solid 1px #F88A8A;
+    border: solid 1px #F88A8A !important;
 }
 #error-mesg{
     color: #F88A8A;
 }
-@media (max-width: 400px){
+@media (max-width: 760px){
     #compsa-logo{
         width: 5rem;
         position: initial;
