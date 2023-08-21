@@ -8,6 +8,9 @@ button{
     text-align: center;
     font-size: 1.5rem;
 }
+#answer{
+    font-size: 1rem;
+}
 #code{
     text-align: center;
     margin: 4rem 0;

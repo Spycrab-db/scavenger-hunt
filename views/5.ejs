@@ -28,7 +28,7 @@
         <% } %>
       </div>
       <% if (incorrect) { %>
-      <div>Incorrect</div>
+      <div class="error-mesg">Incorrect</div>
       <div class="error-mesg">
         <%= incorrect.map(num => (Number(num) + 1)).join(', ') %>
       </div>

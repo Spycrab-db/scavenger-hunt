@@ -14,7 +14,7 @@
         <label for="answer" style="display: block">Answer</label>
         <input type="text" name="answer" value="<%= input || ""%>" id="answer" class="<%=incorrect && "incorrect-input"%>"  required />
       </div>
-      <p id="error-mesg"><%= incorrect && "Incorrect, please try again" %></p>
+      <p class="error-mesg"><%= incorrect && "Incorrect, please try again" %></p>
       <button>Submit</button>
     </form>
   </body>

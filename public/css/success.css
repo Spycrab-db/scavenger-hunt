@@ -6,10 +6,20 @@ h2{
     color: #98f38f;
     margin-bottom: 8rem;
 }
-span{
+.emoji{
+    display: block;
     font-size: 5rem;
+    text-decoration: none;
+}
+#leaderboard{
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+}
+.fade-in{
+    opacity: 1 !important;
 }
 a{
+    display: block;
     color: rgb(255, 255, 163);
     text-align: center;
     font-size: 3rem;
