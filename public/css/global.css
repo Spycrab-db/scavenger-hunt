@@ -41,6 +41,10 @@ button{
     width: 50%;
     margin: auto;
     margin-bottom: .5rem;
+    cursor: pointer;
+}
+button:active{
+    opacity: .8;
 }
 #answer-form{
     width: 30%;
@@ -62,7 +66,8 @@ button{
 .incorrect-input{
     border: solid 1px #F88A8A !important;
 }
-#error-mesg{
+.error-mesg{
+    text-align: center;
     color: #F88A8A;
 }
 @media (max-width: 760px){

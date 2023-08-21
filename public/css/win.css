@@ -1,0 +1,72 @@
+#win-message{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    width: 50%;
+}
+form{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+label{
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 200;
+}
+input{
+    background-color: #464646;
+    border: none;
+    border-radius: .2rem;
+    color: white;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    height: 3rem;
+    font-size: 1.2rem;
+}
+input::placeholder{
+    color: #AAAAAA;
+}
+#input-fields{
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+}
+#input-fields div{
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-direction: column;
+}
+button{
+    width: 30%;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 760px){
+    #win-message{
+        width: 90%;
+        font-size: unset;
+        margin: unset;
+    }
+    label{
+        font-size: 1.5rem;
+    }
+    .error-mesg{
+        margin: .5rem;
+    }
+    form{
+        gap: 2rem;
+    }
+    form div{
+        flex-direction: column;
+    }
+    #input-fields{
+        gap: .5rem;;
+    }
+    button{
+        width: 70%;
+    }
+}

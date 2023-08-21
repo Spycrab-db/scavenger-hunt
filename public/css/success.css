@@ -1,0 +1,19 @@
+h1{
+    font-size: 5rem;
+    color: #98f38f;
+}
+h2{
+    color: #98f38f;
+    margin-bottom: 8rem;
+}
+span{
+    font-size: 5rem;
+}
+a{
+    color: rgb(255, 255, 163);
+    text-align: center;
+    font-size: 3rem;
+}
+a:visited{
+    color: rgb(252, 163, 255);
+}
