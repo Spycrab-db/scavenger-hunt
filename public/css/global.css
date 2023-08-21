@@ -5,10 +5,61 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+}
+#compsa-logo{
+    width: 10rem;
+    position: absolute;
+    left: 2rem;
 }
 h1{
     text-align: center;
 }
+img{
+    border-radius: .4rem;
+}
 label{
     text-align: center;
+    margin-bottom: .7rem;
+    font-size: 2rem;
+}
+button{
+    display: block;
+    border: none;
+    background-color: #629E5D;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: .4rem;
+    padding: .6rem;
+    width: 50%;
+    margin: auto;
+}
+#answer-form{
+    width: 30%;
+}
+#answer{
+    background-color: #464646;
+    border: none;
+    border-radius: .4rem;
+    font-size: 2rem;
+    color: white;
+    width: 100%;
+    padding: .2rem;
+    height: 10rem;
+}
+#error-mesg{
+    text-align: center;
+    color: #F88A8A;
+}
+@media (max-width: 400px){
+    #compsa-logo{
+        width: 5rem;
+        position: initial;
+    }
+    h1{
+        font-size: 1rem;
+    }
+    img{
+        width: 70%;
+    }
 }
