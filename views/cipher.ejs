@@ -4,7 +4,8 @@
     <%- include("components/boilerplate") %>
   </head>
   <body>
-    <h1>#<%= number %> <%= title %></h1>
+    <%- include("components/heading") %>
+    <img src="COMPSA Logo.png" alt="COMPSA Logo" id="compsa-logo">
     <div><%= question %></div>
     <div><%= code %></div>
     <form action="/<%= id %>/check-string" method="POST">
