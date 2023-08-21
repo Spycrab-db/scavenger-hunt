@@ -14,6 +14,13 @@ body{
 }
 h1{
     text-align: center;
+    margin: auto;
+}
+p{
+    text-align: center;
+}
+#question{
+    width: 50%;
 }
 img{
     border-radius: .4rem;
@@ -21,7 +28,7 @@ img{
 label{
     text-align: center;
     margin-bottom: .7rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 button{
     display: block;
@@ -41,14 +48,14 @@ button{
     background-color: #464646;
     border: none;
     border-radius: .4rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: white;
     width: 100%;
-    padding: .2rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
     height: 10rem;
 }
 #error-mesg{
-    text-align: center;
     color: #F88A8A;
 }
 @media (max-width: 400px){
@@ -61,5 +68,12 @@ button{
     }
     img{
         width: 70%;
+    }
+    #answer-form{
+        width: 90%;
+    }
+    #answer{
+        font-size: 1.5rem;
+        height: 5rem;
     }
 }
