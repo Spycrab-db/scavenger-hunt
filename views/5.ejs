@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <%- include("components/boilerplate") %>
+    <link rel="stylesheet" href="/css/4-5.css">
   </head>
   <body>
     <%- include("components/heading") %>
@@ -9,6 +10,8 @@
     <img
       src="https://res.cloudinary.com/dnmrwlniy/image/upload/v1692212781/Scavenger%20Hunt/coding_question_yhn4il.png"
       alt="puzzle"
+      id="question-img"
+      style="height: 30rem"
     />
     <form action="/<%= id %>/check-array" method="POST">
       <% input = input && input.split(",") %>

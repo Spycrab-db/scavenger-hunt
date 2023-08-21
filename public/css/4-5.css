@@ -23,6 +23,9 @@ form div{
     text-align: center;
     font-size: 1.5rem;
 }
+button{
+    width: 8rem
+}
 @media (max-width: 400px){
     #question-img{
         height: unset !important;
