@@ -17,6 +17,9 @@ mongoose
   .connect(dbURL)
   .then(() => {
     console.log("CONNECTED TO DATABASE");
+    app.listen(port, () => {
+      console.log(`LISTENING AT PORT ${port}`);
+    });
   })
   .catch((err) => {
     console.log(err);
@@ -152,8 +155,4 @@ app.post("/:id/check-array", async (req, res) => {
   } catch {
     return res.status(500).send("SERVER ERROR");
   }
-});
-
-app.listen(port, () => {
-  console.log(`LISTENING AT PORT ${port}`);
 });
