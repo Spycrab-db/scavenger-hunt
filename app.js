@@ -37,9 +37,7 @@ app.get("/", async (req, res) => {
   const winners = await Winner.find({}).sort({ createdAt: 1 });
   res.render("home", { winners });
 });
-app.get("/test", (req, res) => {
-  res.render("success");
-});
+
 app.get("/:id", async (req, res) => {
   try {
     const puzzle = await Puzzle.findById(req.params.id);

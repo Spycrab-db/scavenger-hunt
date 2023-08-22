@@ -2,16 +2,21 @@
 <html lang="en">
     <head>
         <%- include("components/boilerplate") %>
+        <link rel="stylesheet" href="/css/home.css">
     </head>
 <body>
-    <h1>Scavenger Hunt!</h1>
+    <img src="/COMPSA Logo.png" alt="COMPSA Logo" id="compsa-logo">
+    <h1>COMPSA Scavenger Hunt!</h1>
     <h2>Winners</h2>
+    <hr style="width: 60%;">
     <ol>
         <% for( let winner of winners ) { %>
-            <li><%= winner.name %></li>
-            <p>TeamID: <%= winner.id %></p>
-            <% const opt = { month: "long", day: "numeric", hour: "numeric", minute: "numeric"} %>
-            <p>Time: <%= winner.createdAt.toLocaleString("en-US", opt) %></p>
+            <div class="winner">
+                <li><%= winner.name %></li>
+                <p style="text-align: left;">TeamID: <%= winner.id %></p>
+                <% const opt = { month: "long", day: "numeric", hour: "numeric", minute: "numeric"} %>
+                <p style="text-align: left;">Time: <%= winner.createdAt.toLocaleString("en-US", opt) %></p>
+            </div>
         <% } %>
     </ol>
 </body>
