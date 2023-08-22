@@ -1,10 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const Puzzle = require("./models/puzzle");
-require("dotenv").config();
-
-const dbURL = process.env.DB_URL || "mongodb://127.0.0.1:27017/scavenger-hunt";
-mongoose.connect(dbURL);
 
 function checkPassword(req, res, next) {
   if (req.body.password === process.env.ADMIN_PASSWORD) {

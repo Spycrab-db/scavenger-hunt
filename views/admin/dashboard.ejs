@@ -9,7 +9,7 @@
     <h1>Admin Dashboard</h1>
     <h2>Change location</h2>
     <% for( let puzzle of puzzles) { %>
-        <form action="/admin/<%= puzzle.id %>" method="post">
+        <form action="/admin/<%= puzzle.id %>" method="post" style="margin-bottom: 2rem;">
             <div>
                 <input type="text" name="0" value="<%= puzzle.reward[0] %>">
                 <input type="text" name="1" value="<%= puzzle.reward[1] %>">

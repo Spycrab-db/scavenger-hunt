@@ -5,6 +5,7 @@ const adminRouter = require("./admin");
 const Puzzle = require("./models/puzzle");
 const Team = require("./models/team");
 const Winner = require("./models/winner");
+require("dotenv").config();
 
 const app = express();
 app.set("view engine", "ejs");
