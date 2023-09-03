@@ -25,13 +25,16 @@ mongoose
     console.log(err);
   });
 
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: { "img-src": ["'self'", "res.cloudinary.com"] },
-    },
-  })
-);
+if (process.env.NODE_ENV !== "development") {
+  console.log("HELMET SECURED");
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: { "img-src": ["'self'", "res.cloudinary.com"] },
+      },
+    })
+  );
+}
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
