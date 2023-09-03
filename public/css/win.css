@@ -45,7 +45,7 @@ button{
     margin-bottom: 2rem;
 }
 
-@media (max-width: 760px){
+@media (max-width: 1000px){
     #win-message{
         width: 90%;
         font-size: unset;

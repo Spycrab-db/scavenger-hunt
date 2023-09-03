@@ -7,12 +7,13 @@
   <body>
     <%- include("components/heading") %>
     <img src="/COMPSA Logo.png" alt="COMPSA Logo" id="compsa-logo">
-    <img
-      src="https://res.cloudinary.com/dnmrwlniy/image/upload/v1692152416/Scavenger%20Hunt/crossword-21SEp8IRYe_1_wo961e.png"
-      alt="puzzle"
-      id="question-img"
-      style="height: 40rem"
-    />
+    <a href="https://res.cloudinary.com/dnmrwlniy/image/upload/v1692152416/Scavenger%20Hunt/crossword-21SEp8IRYe_1_wo961e.png">
+      <img
+        src="https://res.cloudinary.com/dnmrwlniy/image/upload/v1692152416/Scavenger%20Hunt/crossword-21SEp8IRYe_1_wo961e.png"
+        alt="puzzle"
+        id="question-img"
+      />
+    </a>
     <form action="/<%= id %>/check-array" method="POST"
       style="display: flex; flex-direction: column; gap: 1rem;">
       <% input = input && input.split(",") %>

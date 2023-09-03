@@ -15,7 +15,7 @@ button{
     text-align: center;
     margin: 4rem 0;
 }
-@media (max-width: 760px){
+@media (max-width: 1000px){
     #question{
         width: 90%;
         font-size: 1rem;

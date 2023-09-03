@@ -1,3 +1,7 @@
+#question-img{
+    height: 40rem;
+}
+
 input{
     background-color: #464646;
     border: none;
@@ -25,12 +29,15 @@ form div{
 button{
     width: 8rem
 }
-@media (max-width: 760px){
+@media (max-width: 1000px){
     #question-img{
-        height: unset !important;
+        height: unset;
     }
     form div{
         flex-direction: column;
+    }
+    form div input{
+        margin-bottom: 1rem;
     }
     button{
         font-size: 1rem;

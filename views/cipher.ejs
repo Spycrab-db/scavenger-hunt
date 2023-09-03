@@ -9,13 +9,6 @@
     <img src="/COMPSA Logo.png" alt="COMPSA Logo" id="compsa-logo">
     <div id="question"><%= question %></div>
     <div id="code"><%= code %></div>
-    <form action="/<%= id %>/check-string" method="POST">
-      <div>
-        <label for="answer" style="display: block">Answer</label>
-        <input type="text" name="answer" value="<%= input || ""%>" id="answer" class="<%=incorrect && "incorrect-input"%>"  required />
-      </div>
-      <p class="error-mesg"><%= incorrect && "Incorrect, please try again" %></p>
-      <button>Submit</button>
-    </form>
+    <%- include("components/form") %>
   </body>
 </html>
