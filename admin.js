@@ -16,7 +16,9 @@ admin.get("/", (req, res) => {
 
 admin.post("/", checkPassword, async (req, res) => {
   try {
-    const puzzles = await Puzzle.find({ number: { $ne: 8 } });
+    const puzzles = await Puzzle.find({ number: { $ne: 8 } }).sort({
+      number: 1,
+    });
     res.render("admin/dashboard", { puzzles, password: req.body.password });
   } catch {
     res.status(500).send("SERVER ERROR");
@@ -26,7 +28,9 @@ admin.post("/:id", checkPassword, async (req, res) => {
   try {
     const reward = [req.body["0"], req.body["1"], req.body["2"]];
     await Puzzle.findOneAndUpdate({ _id: req.params.id }, { reward });
-    const puzzles = await Puzzle.find({ number: { $ne: 8 } });
+    const puzzles = await Puzzle.find({ number: { $ne: 8 } }).sort({
+      number: 1,
+    });
     res.render("admin/dashboard", { puzzles, password: req.body.password });
   } catch {
     res.status(500).send("SERVER ERROR");

@@ -11,6 +11,7 @@
     <% for( let puzzle of puzzles) { %>
         <form action="/admin/<%= puzzle.id %>" method="post" style="margin-bottom: 2rem;">
             <div>
+                <h1><%= puzzle.number + 1 %></h1>
                 <input type="text" name="0" value="<%= puzzle.reward[0] %>">
                 <input type="text" name="1" value="<%= puzzle.reward[1] %>">
                 <input type="text" name="2" value="<%= puzzle.reward[2] %>">
