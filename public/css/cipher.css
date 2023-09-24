@@ -1,34 +1,36 @@
-form{
-    width: 50%;
+form {
+  width: 50%;
 }
-button{
-    width: 10rem;
+button {
+  width: 10rem;
 }
-#question{
-    text-align: center;
-    font-size: 1.5rem;
+#question {
+  text-align: center;
+  font-size: 1.5rem;
 }
-#answer{
+#answer {
+  font-size: 1rem;
+}
+#code {
+  text-align: center;
+  margin: 4rem 0;
+  width: 100vw;
+  overflow-wrap: break-word;
+}
+@media (max-width: 1000px) {
+  #question {
+    width: 90%;
     font-size: 1rem;
-}
-#code{
-    text-align: center;
-    margin: 4rem 0;
-}
-@media (max-width: 1000px){
-    #question{
-        width: 90%;
-        font-size: 1rem;
-    }
-    #code{
-        width: 90%;
-        font-size: 1rem;
-        overflow-wrap: anywhere;
-    }
-    form{
-        width: 90%;
-    }
-    #answer{
-        font-size: 1rem;
-    }
+  }
+  #code {
+    width: 90%;
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+  }
+  form {
+    width: 90%;
+  }
+  #answer {
+    font-size: 1rem;
+  }
 }
