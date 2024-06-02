@@ -10,7 +10,7 @@ require("dotenv").config();
 const app = express();
 app.set("view engine", "ejs");
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const dbURL = process.env.DB_URL || "mongodb://127.0.0.1:27017/scavenger-hunt";
 
 mongoose
