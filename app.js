@@ -111,7 +111,7 @@ app.post("/:id/check-string", async (req, res) => {
     if (!puzzle) return res.send("NOT FOUND");
     const { id, number, answer, reward } = puzzle;
     if (answer.includes(req.body.answer.toLowerCase())) {
-      if (number === 6) {
+      if (number === 8) {
         return res.render("win", {
           questionID: id,
           answer: req.body.answer,
