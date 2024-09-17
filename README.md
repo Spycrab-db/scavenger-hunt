@@ -14,13 +14,9 @@
 - CSS (Styling)
 - HelmetJS (Basic Security)
 
-## Difficulty Problems
-
-The questions are designed so that you couldn't easily use Google or ChatGPT. It quickly became obvious that the later puzzles are too difficult. For this reason, the last question was set to 6 rather than 8.
-
 ## Event Finished
 
-Since the event is over, the last question is set back to 8, and links to puzzles are provided for archival reasons.
+Since the event is over, links to puzzles are provided for archival reasons.
 
 - [Puzzle 1](https://compsa-scavenger-hunt.fly.dev/9f8c2bc3)
 - [Puzzle 2](https://compsa-scavenger-hunt.fly.dev/60481e90)
